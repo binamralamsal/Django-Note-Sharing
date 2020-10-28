@@ -1,6 +1,9 @@
-<form action="{% url 'add_text' %}" method="post">
-    {% csrf_token %}
+{% extends 'paste/dashboard/index.html' %}
+{% block content %}
+    <form action="{% url 'add_text' %}" method="post">
+        {% csrf_token %}
 
-    <textarea name="text" placeholder="text"></textarea>
-    <input type="submit">
-</form>
+        <textarea name="text" placeholder="text" class="form-control"></textarea>
+        <input type="submit" class="form-control btn btn-primary">
+    </form>
+{% endblock %}

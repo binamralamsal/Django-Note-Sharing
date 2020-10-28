@@ -24,3 +24,7 @@ def add_text(request):
         return redirect('/')
     else:
         return redirect('add')
+
+
+def dashboard(request):
+    return render(request, 'paste/dashboard/index.html')

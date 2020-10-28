@@ -1,3 +1,7 @@
-{{ paste.author }}
-{{ paste.date }}
-{{ paste.text }}
+{% extends 'paste/dashboard/index.html' %}
+
+{% block content %}
+    {{ paste.author }}
+    {{ paste.date }}
+    {{ paste.text }}
+{% endblock %}

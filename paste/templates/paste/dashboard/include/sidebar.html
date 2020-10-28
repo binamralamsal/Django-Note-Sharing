@@ -1,0 +1,73 @@
+{% load static %}
+<div class="sidebar sidebar-style-2">
+			<div class="sidebar-wrapper scrollbar scrollbar-inner">
+				<div class="sidebar-content">
+					<div class="user">
+						<div class="avatar-sm float-left mr-2">
+							<img src="{% static 'img/profile.jpg' %}" alt="..." class="avatar-img rounded-circle">
+						</div>
+						<div class="info">
+							<a data-toggle="collapse" href="#collapseExample" aria-expanded="true">
+								<span>
+									{{ request.user.username }}
+									<span class="user-level">User</span>
+									<span class="caret"></span>
+								</span>
+							</a>
+							<div class="clearfix"></div>
+
+							<div class="collapse in" id="collapseExample">
+								<ul class="nav">
+									<li>
+										<a href="">
+											<span class="link-collapse">My Profile</span>
+										</a>
+									</li>
+									<li>
+										<a href="">
+											<span class="link-collapse">Edit Profile</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<ul class="nav nav-primary">
+						<li class="nav-section">
+							<span class="sidebar-mini-icon">
+								<i class="fa fa-ellipsis-h"></i>
+							</span>
+							<h4 class="text-section">Options</h4>
+						</li>
+{#						<li class="nav-item">#}
+{#							<a data-toggle="collapse" href="#forms">#}
+{#								<i class="fas fa-pen-square"></i>#}
+{#								<p>Forms</p>#}
+{#								<span class="caret"></span>#}
+{#							</a>#}
+{#							<div class="collapse" id="forms">#}
+{#								<ul class="nav nav-collapse">#}
+{#									<li>#}
+{#										<a href="">#}
+{#											<span class="sub-item">Basic Form</span>#}
+{#										</a>#}
+{#									</li>#}
+{#								</ul>#}
+{#							</div>#}
+{#						</li>#}
+                        <li class="nav-item">
+                            <a href="">
+                                <i class="fas fa-paste"></i>
+                                My Paste
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'add_text_form' %}">
+                                <i class="fas fa-plus"></i>
+                                Add Paste
+                            </a>
+                        </li>
+					</ul>
+				</div>
+			</div>
+		</div>
