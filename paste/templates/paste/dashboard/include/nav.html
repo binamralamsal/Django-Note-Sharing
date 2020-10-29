@@ -55,7 +55,7 @@
                                 <div class="user-box">
                                     <div class="avatar-lg"><img src="{% static 'img/profile.jpg' %}" alt="image profile" class="avatar-img rounded"></div>
                                     <div class="u-text">
-                                        <h4>{{ request.user.username }}</h4>
+                                        <h4>{{ request.user.first_name }}</h4>
                                         <p class="text-muted">{{ request.user.email}}</p><a href="" class="btn btn-xs btn-secondary btn-sm">View Profile</a>
                                     </div>
                                 </div>
@@ -65,7 +65,7 @@
                                 <a class="dropdown-item" href="#">My Profile</a>
                                 <a class="dropdown-item" href="#">Account Setting</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Logout</a>
+                                <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
                             </li>
                         </div>
                     </ul>
