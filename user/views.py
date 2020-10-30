@@ -34,11 +34,11 @@ def register_user(request):
     if request.method == "POST":
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
-        email = request.POST.get('email')
-        password = request.POST.get('password')
-        password_repeat = request.POST.get('password_repeat')
+        email = request.POST['email']
+        password = request.POST['password']
+        password_repeat = request.POST['password_repeat']
         if password == password_repeat:
-            user = User(first_name=first_name, last_name=last_name, email=email, username=email, password=password)
+            user = User.objects.create_user(first_name=first_name, last_name=last_name, email=email, username=email, password=password)
             user.save()
             auth.login(request, user)
             return redirect('dashboard')
