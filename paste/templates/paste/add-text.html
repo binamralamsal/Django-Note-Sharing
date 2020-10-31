@@ -1,4 +1,4 @@
-{% extends 'paste/dashboard/index.html' %}
+{% extends 'paste/dashboard/base.html' %}
 {% block content %}
     <form action="{% url 'add_text' %}" method="post">
         {% csrf_token %}

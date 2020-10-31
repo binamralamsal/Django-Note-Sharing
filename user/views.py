@@ -5,10 +5,14 @@ from django.contrib import auth
 
 
 def login(request):
+    if request.user.is_authenticated:
+        return redirect('dashboard')
     return render(request, 'auth/login.html')
 
 
 def register(request):
+    if request.user.is_authenticated:
+        return redirect('dashboard')
     return render(request, 'auth/register.html')
 
 

@@ -1,0 +1,7 @@
+{% extends 'paste/dashboard/base.html' %}
+{% block content %}
+    {% for each in paste %}
+        {{ each.text }} {{ each.date }}
+        <br>
+    {% endfor %}
+{% endblock %}

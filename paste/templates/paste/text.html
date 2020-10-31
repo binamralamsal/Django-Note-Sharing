@@ -1,7 +1,23 @@
-{% extends 'paste/dashboard/index.html' %}
-
 {% block content %}
+    {% if not expired %}
+        {% if not private %}
+   {% if password %}
     {{ paste.author }}
     {{ paste.date }}
     {{ paste.text }}
+       {% else %}
+       <p>Please provide password</p>
+       <br>
+       <form action="{% url 'get_text' paste.pk %}">
+       <input type="text" placeholder="Enter password" name="p">
+           <br>
+           <input type="submit">
+       </form>
+    {% endif %}
+            {% else %}
+            <p>Sorry it is private now</p>
+            {% endif %}
+        {% else %}
+        <p>Sorry it is expired now</p>
+    {% endif %}
 {% endblock %}
