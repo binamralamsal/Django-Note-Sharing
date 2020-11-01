@@ -1,9 +1,99 @@
 {% extends 'paste/dashboard/base.html' %}
 {% block content %}
-    <form action="{% url 'add_text' %}" method="post">
-        {% csrf_token %}
+    <div class="page-inner">
 
-        <textarea name="text" placeholder="text" class="form-control"></textarea>
-        <input type="submit" class="form-control btn btn-primary">
-    </form>
+        {# Page Header #}
+        <div class="page-header">
+            <h4 class="page-title">Add paste</h4>
+            <ul class="breadcrumbs">
+                <li class="nav-home">
+                    <a href="{% url 'dashboard' %}">
+                        <i class="flaticon-home"></i>
+                    </a>
+                </li>
+                <li class="separator">
+                    <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'add_text_form' %}">Add Paste</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+
+                {# Card #}
+                <div class="card">
+                    <div class="card-body">
+                        <form action="{% url 'add_text' %}" method="post">
+                            {% csrf_token %}
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="title">Title</label>
+                                        <input type="text" class="form-control" id="title" placeholder="Enter your Title" name="title" required>
+                                        <small class="form-text text-muted">
+                                            This is the title of your paste. Just enter the title of your paste to make
+                                            it remarkable.
+                                        </small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="key">Key</label>
+                                        <input type="text" class="form-control" id="key" placeholder="Enter your Key" name="key">
+                                        <small class="form-text text-muted">
+                                            This is the password of your paste. Putting key will help you to secure your
+                                            texts.
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <div class="form-group">
+                                            <label for="security">Security</label>
+                                            <select name="security" id="security" class="form-control" required>
+                                                <option value="PUBLIC">Public</option>
+                                                <option value="PRIVATE">Private</option>
+                                            </select>
+                                            <small class="form-text text-muted">
+                                                Enter security for your text. Private can only be accessed by you and
+                                                public are accessed with the help of email.
+                                            </small>
+                                        </div>
+                                        <label for="expiration_date">Expiration Date</label>
+                                        <input type="date" class="form-control" id="expiration_date" name="expiration_date">
+                                        <small class="form-text text-muted">
+                                            Expiration date is the great way to make your texts secure. Your texts can
+                                            not be accessed after the time you entered. Leave it empty to make permanent.
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="paste">Your Text</label>
+                                <textarea name="text" placeholder="Enter your text" class="form-control" id="paste full-featured" ></textarea>
+                            </div>
+                            <div class="card-action">
+                                <input type="submit" class="form-control btn btn-primary">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+      <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+  <script>
+      tinymce.init({
+          selector:'textarea',
+          statusbar: false,
+          menubar: ' edit view insert format tools table tc help',
+
+      });
+  </script>
 {% endblock %}

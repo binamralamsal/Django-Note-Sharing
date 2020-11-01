@@ -1,7 +1,116 @@
 {% extends 'paste/dashboard/base.html' %}
 {% block content %}
-    {% for each in paste %}
-        {{ each.text }} {{ each.date }}
-        <br>
-    {% endfor %}
+    <div class="page-inner">
+
+        {# Page Header #}
+        <div class="page-header">
+            <h4 class="page-title">My paste</h4>
+            <ul class="breadcrumbs">
+                <li class="nav-home">
+                    <a href="{% url 'dashboard' %}">
+                        <i class="flaticon-home"></i>
+                    </a>
+                </li>
+                <li class="separator">
+                    <i class="flaticon-right-arrow"></i>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'my_paste' %}">My Paste</a>
+                </li>
+            </ul>
+        </div>
+
+        {# Row #}
+        <div class="row">
+            <div class="col-md-12">
+
+                {# Card #}
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+
+                            {# Table #}
+                            <table class="table table-head-bg-primary mt-4">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Title</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Expiration Date</th>
+                                        <th scope="col">Security</th>
+                                        <th scope="col">Key</th>
+                                        <th scope="col">Link</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for each in paste %}
+                                        <tr>
+                                            <td>{{ forloop.counter }}</td>
+                                            <td><a href="{% url 'get_text' each.id %}">{{ each }}</a></td>
+                                            <td>{{ each.date }}</td>
+                                            <td>{{ each.expiration_date }}</td>
+                                            <td>{{ each.security }}</td>
+                                            <td>{{ each.key }}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-sm" data-toggle="modal" data-target="#CopyModal{{ forloop.counter }}">
+                                                    Copy
+                                                </button>
+
+                                                {# Modal #}
+                                                <div class="modal fade" id="CopyModal{{ forloop.counter }}" tabindex="-1" role="dialog" aria-labelledby="CopyModalTitle" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLongTitle">Copy Link</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+
+                                                                <ul class="nav nav-pills nav-secondary nav-pills-no-bd" id="pills-tab-without-border" role="tablist">
+                                                                    <li class="nav-item">
+                                                                        <a class="nav-link active" id="pills-home-tab-nobd" data-toggle="pill" href="#without_key{{ forloop.counter }}" role="tab" aria-controls="pills-home-nobd" aria-selected="false">Without Key</a>
+                                                                    </li>
+                                                                    {% if each.key %}
+                                                                        <li class="nav-item submenu">
+                                                                            <a class="nav-link" id="pills-profile-tab-nobd" data-toggle="pill" href="#with_key{{ forloop.counter }}" role="tab" aria-controls="pills-profile-nobd" aria-selected="false">With Key</a>
+                                                                        </li>
+                                                                    {% endif %}
+                                                                </ul>
+                                                                <div class="tab-content mt-2 mb-3" id="pills-without-border-tabContent">
+                                                                    <div class="tab-pane fade show active" id="without_key{{ forloop.counter }}" role="tabpanel" aria-labelledby="pills-home-tab-nobd">
+                                                                        <input type="text" value="https://{{ request.get_host }}{% url 'get_text' each.pk %}" class="form-control" readonly style="color:black;">
+                                                                    </div>
+                                                                    {% if each.key %}
+                                                                        <div class="tab-pane fade" id="with_key{{ forloop.counter }}" role="tabpanel" aria-labelledby="pills-profile-tab-nobd">
+                                                                            <input type="text" value="https://{{ request.get_host }}{% url 'get_text' each.pk %}?p={{ each.key }}" class="form-control" readonly style="color:black;">
+                                                                        </div>
+                                                                    {% endif %}
+                                                                </div>
+
+
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
 {% endblock %}

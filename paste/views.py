@@ -43,8 +43,21 @@ def add_text_form(request):
 @login_required(login_url='login')
 def add_text(request):
     if request.method == "POST":
-        text = request.POST['text']
-        paste = models.TextFile(author=request.user, text=text)
+        text = request.POST.get('text')
+        title = request.POST.get('title')
+        key = request.POST.get('key')
+        security = request.POST.get('security')
+        expiration_date = request.POST.get('expiration_date')
+        if expiration_date == "":
+            expiration_date = None
+        paste = models.TextFile(
+            author=request.user,
+            text=text,
+            key=key,
+            security=security,
+            expiration_date=expiration_date,
+            title=title
+        )
         paste.save()
         return redirect('my_paste')
     else:

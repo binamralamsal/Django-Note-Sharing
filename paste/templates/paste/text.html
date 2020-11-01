@@ -1,7 +1,7 @@
 {% block content %}
-    {% if not expired %}
+    {% if not expired or request.user == paste.author %}
         {% if not private %}
-   {% if password %}
+   {% if password or request.user == paste.author %}
     {{ paste.author }}
     {{ paste.date }}
     {{ paste.text }}
