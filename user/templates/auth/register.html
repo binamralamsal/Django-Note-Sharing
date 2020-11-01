@@ -1,18 +1,83 @@
+{#<form action="{% url 'register_user' %}" method="post">#}
+{#    {% csrf_token %}#}
+{#    <input type="text" name="first_name" placeholder="First Name">#}
+{#    <input type="text" name="last_name" placeholder="Last Name">#}
+{#    <input type="email" name="email" placeholder="Email">#}
+{#    <input type="password" name="password" placeholder="Password">#}
+{#    <input type="password" name="password_repeat" placeholder="Repeat Password">#}
+{#    <input type="submit">#}
+{#</form>#}
+
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+	<title>Animated Login Form</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'user/css/style.css' %}">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+	<script src="https://kit.fontawesome.com/a81368914c.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    <form action="{% url 'register_user' %}" method="post">
-        {% csrf_token %}
-        <input type="text" name="first_name" placeholder="First Name">
-        <input type="text" name="last_name" placeholder="Last Name">
-        <input type="email" name="email" placeholder="Email">
-        <input type="password" name="password" placeholder="Password">
-        <input type="password" name="password_repeat" placeholder="Repeat Password">
-        <input type="submit">
-    </form>
+	<img class="wave" src="{% static 'user/img/wave.png' %}">
+	<div class="container">
+		<div class="img">
+			<img src="{% static 'user/img/bg.svg' %}">
+		</div>
+		<div class="login-content">
+			<form action="{% url 'register_user' %}" method="post">
+                {% csrf_token %}
+				<img src="{% static 'user/img/avatar.svg' %}">
+                <div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-user"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<h5>First Name</h5>
+           		   		<input type="text" class="input" name="first_name" required>
+           		   </div>
+           		</div>
+                <div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-user"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<h5>Last Name</h5>
+           		   		<input type="text" class="input" name="last_name" required>
+           		   </div>
+           		</div>
+           		<div class="input-div one">
+           		   <div class="i">
+           		   		<i class="fas fa-user"></i>
+           		   </div>
+           		   <div class="div">
+           		   		<h5>Email</h5>
+           		   		<input type="email" class="input" name="email" required>
+           		   </div>
+           		</div>
+           		<div class="input-div pass">
+           		   <div class="i">
+           		    	<i class="fas fa-lock"></i>
+           		   </div>
+           		   <div class="div">
+           		    	<h5>Password</h5>
+           		    	<input type="password" class="input" name="password" required>
+            	   </div>
+            	</div>
+                <div class="input-div pass">
+           		   <div class="i">
+           		    	<i class="fas fa-lock"></i>
+           		   </div>
+           		   <div class="div">
+           		    	<h5>Repeat Password</h5>
+           		    	<input type="password" class="input" name="password_repeat" required>
+            	   </div>
+            	</div>
+            	<a href="#">Forgot Password?</a>
+            	<input type="submit" class="btn" value="Register">
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="{% static 'user/js/main.js' %}"></script>
 </body>
 </html>
