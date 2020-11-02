@@ -1,0 +1,466 @@
+{% load static %}
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+-->
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Yogic a Sports Category Bootstrap Responsive Website Template - Home : W3Layouts</title>
+    <!-- google-fonts -->
+    <link
+        href="//fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,400;1,600;1,700&display=swap"
+        rel="stylesheet">
+    <!-- //google-fonts -->
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="{% static 'home/css/style-starter.css' %}">
+</head>
+
+<body>
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke px-0">
+                <h1>
+                    <a class="navbar-brand" href="{% url 'home' %}">
+                        ePaste
+                    </a>
+                </h1>
+                <!-- if logo is image enable this
+    <a class="navbar-brand" href="#index.html">
+        <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+    </a> -->
+                <button class="navbar-toggler  collapsed bg-gradient" type="button" data-toggle="collapse"
+                    data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mx-lg-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="">Contact Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="cont-ser-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--//header-->
+{% block content %}
+{% endblock %}
+
+   <!-- 3 grids with icon section -->
+{#    <section class="w3l-feature-8">#}
+{#        <div class="features-main py-5">#}
+{#            <div class="container py-md-4 py-3">#}
+{#                <div class="features">#}
+{#                    <div class="feature-1">#}
+{#                        <div class="feature-body">#}
+{#                            <div class="feature-images">#}
+{#                                <span class="fa fa-bullhorn" aria-hidden="true"></span>#}
+{#                            </div>#}
+{#                            <div class="feature-info">#}
+{#                                <a href="about.html">#}
+{#                                    <h3 class="feature-titel">Yoga Workouts</h3>#}
+{#                                </a>#}
+{#                                <p class="feature-text">Amazing Yoga Workout and Mediatation that suit everyone</p>#}
+{#                                <a href="about.html" class="feature-link">Read more <span#}
+{#                                        class="arrow">&raquo;</span></a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="feature-2">#}
+{#                        <div class="feature-body">#}
+{#                            <div class="feature-images">#}
+{#                                <span class="fa fa-users" aria-hidden="true"></span>#}
+{#                            </div>#}
+{#                            <div class="feature-info">#}
+{#                                <a href="about.html">#}
+{#                                    <h3 class="feature-titel">Yoga Instructors</h3>#}
+{#                                </a>#}
+{#                                <p class="feature-text">All Our Classes are Well Planned by Professional Yoga#}
+{#                                    Instructors</p>#}
+{#                                <a href="about.html" class="feature-link">Read more <span#}
+{#                                        class="arrow">&raquo;</span></a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <div class="feature-3">#}
+{#                        <div class="feature-body">#}
+{#                            <div class="feature-images">#}
+{#                                <span class="fa fa-umbrella" aria-hidden="true"></span>#}
+{#                            </div>#}
+{#                            <div class="feature-info">#}
+{#                                <a href="about.html">#}
+{#                                    <h3 class="feature-titel">Professional Yoga</h3>#}
+{#                                </a>#}
+{#                                <p class="feature-text">Professional Yoga Instructors from around all the world</p>#}
+{#                                <div class="hover">#}
+{#                                    <a href="about.html" class="feature-link">Read more <span#}
+{#                                            class="arrow">&raquo;</span></a>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </section>#}
+    <!-- //3 grids with icon section -->
+    <!-- articles section -->
+{#    <section class="w3l-servicesblock py-5">#}
+{#        <div class="container py-md-4 py-3">#}
+{#            <div class="row">#}
+{#                <div class="col-lg-6 left-wthree-img">#}
+{#                    <img src="{% static 'home/images/image2.jpg' %}" alt="" class="img-fluid">#}
+{#                </div>#}
+{#                <div class="col-lg-6 about-right-faq align-self mt-lg-0 mt-sm-5 mt-4 pl-lg-5">#}
+{#                    <h3 class="title-main-2 mb-3">Amazing Articles</h3>#}
+{#                    <div class="separatorhny"></div>#}
+{#                    <p class="">Lorem ipsum viverra feugiat. Pellen tesque libero ut justo,#}
+{#                        ultrices in ligula. Semper at tempufddfel. Lorem ipsum dolor sit amet.#}
+{#                        Lorem ipsum viverra feugiat. Pellen tesque libero ut justo,#}
+{#                        ultrices in ligula. Semper at tempufddfel.</p>#}
+{##}
+{#                    <div class="row mt-md-5 mt-3">#}
+{#                        <div class="col-sm-6 left-insp-art">#}
+{#                            <ul>#}
+{#                                <li><i class="fa fa-hand-o-right mr-2" aria-hidden="true"></i><a#}
+{#                                        href="classes.html">Meditation</a>#}
+{#                                </li>#}
+{#                                <li><i class="fa fa-hand-o-right mr-2" aria-hidden="true"></i><a#}
+{#                                        href="classes.html">Yoga#}
+{#                                        Therapy</a></li>#}
+{#                                <li><i class="fa fa-hand-o-right mr-2" aria-hidden="true"></i><a#}
+{#                                        href="classes.html">Anatomy</a>#}
+{#                                </li>#}
+{#                                <li><i class="fa fa-hand-o-right mr-2" aria-hidden="true"></i><a#}
+{#                                        href="classes.html">Yoga Poses</a>#}
+{#                                </li>#}
+{#                            </ul>#}
+{#                        </div>#}
+{#                        <div class="col-sm-6 left-insp-art">#}
+{#                            <ul>#}
+{#                                <li><i class="fa fa-hand-o-right mr-2" aria-hidden="true"></i><a#}
+{#                                        href="classes.html">Pranayama</a>#}
+{#                                </li>#}
+{#                                <li><i class="fa fa-hand-o-right mr-2" aria-hidden="true"></i><a#}
+{#                                        href="classes.html">Remedies</a>#}
+{#                                </li>#}
+{#                                <li><i class="fa fa-hand-o-right mr-2" aria-hidden="true"></i><a#}
+{#                                        href="classes.html">Seasonal#}
+{#                                        Tips</a></li>#}
+{#                                <li><i class="fa fa-hand-o-right mr-2" aria-hidden="true"></i><a#}
+{#                                        href="classes.html">Recipes</a>#}
+{#                                </li>#}
+{#                            </ul>#}
+{#                        </div>#}
+{##}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </section>#}
+    <!-- //articles section -->
+
+    <!-- middle section with full bg imgage -->
+{#    <div class="middle py-5">#}
+{#        <div class="container py-md-5 py-4">#}
+{#            <div class="welcome-left text-left py-lg-4">#}
+{#                <h3>Creative & most complete yoga / health theme</h3>#}
+{#                <p class="mt-3 pr-lg-5 mr-lg-5">Lorem ipsum viverra feugiat. Pellen tesque libero ut justo, ultrices in#}
+{#                    ligula. Semper at#}
+{#                    tempufddfel. Lorem ipsum dolor sit amet elit.</p>#}
+{#                <a href="about.html" class="btn btn-style btn-white mt-sm-5 mt-4 mr-2">Read More</a>#}
+{#                <a href="contact.html" class="btn btn-style btn-primary mt-sm-5 mt-4">Contact Us</a>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+    <!-- //middle section with full bg imgage -->
+
+    <!-- footer -->
+    <section class="w3l-footer-29-main">
+        <div class="footer-29 py-5">
+            <div class="container py-lg-4">
+                <div class="row footer-top-29">
+                    <div class="col-lg-4 col-md-6 col-sm-7 footer-list-29 footer-1 pr-lg-5">
+                        <div class="footer-logo mb-3">
+                            <a class="navbar-brand" href="{% url 'home' %}">
+                                ePaste
+                            </a>
+                        </div>
+                        <p>ePaste helps you to share all of your texts with others easily anwhere you want.
+                        With the full privacy and security maintained by us, you do not need to be worry.</p>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-sm-5 col-6 footer-list-29 footer-2 mt-sm-0 mt-5">
+
+                        <ul>
+                            <h6 class="footer-title-29">Quick Links</h6>
+                            <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-6 col-sm-5 col-6 footer-list-29 footer-3 mt-lg-0 mt-5">
+                        <h6 class="footer-title-29">More Info</h6>
+                        <ul>
+                            <li><a href="#privacy">Privacy Policy</a></li>
+                            <li><a href="#terms"> Terms of Service</a></li>
+                            <li><a href="contact.html">Contact us</a></li>
+                            <li><a href="#support"> Support</a></li>
+                        </ul>
+
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-7 footer-list-29 footer-4 mt-lg-0 mt-5">
+                        <h6 class="footer-title-29">Contact Info </h6>
+                        <p>Ask us your queries</p>
+                        <p> <i class="fa fa-envelope mr-2" aria-hidden="true"></i><a
+                                href="mailto:info@example.com">info@example.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //footer -->
+    <!-- copyright -->
+    <section class="w3l-copyright">
+        <div class="container">
+            <div class="row bottom-copies">
+                <p class="col-lg-8 copy-footer-29">© 2020 EPaste. All rights reserved. Design by <a
+                        href="https://w3layouts.com/" target="_blank">
+                        W3Layouts</a></p>
+
+                <div class="col-lg-4 footer-list-29 text-right">
+                    <div class="main-social-footer-29">
+                        <a href="#facebook" class="facebook"><span class="fa fa-facebook"></span></a>
+                        <a href="#twitter" class="twitter"><span class="fa fa-twitter"></span></a>
+                        <a href="#google"><span class="fa fa-google-plus" aria-hidden="true"></span></a>
+                        <a href="#instagram" class="instagram"><span class="fa fa-instagram"></span></a>
+                        <a href="#linkedin" class="linkedin"><span class="fa fa-linkedin"></span></a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- move top -->
+        <button onclick="topFunction()" id="movetop" title="Go to top">
+            &#10548;
+        </button>
+        <script>
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function () {
+                scrollFunction()
+            };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    document.getElementById("movetop").style.display = "block";
+                } else {
+                    document.getElementById("movetop").style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+        </script>
+        <!-- /move top -->
+    </section>
+    <!-- //copyright -->
+
+    <!-- Js scripts -->
+    <!-- common jquery plugin -->
+    <script src="{% static 'home/js/jquery-3.3.1.min.js' %}"></script>
+    <!-- //common jquery plugin -->
+    <!-- owl carousel for team -->
+    <script src="{% static 'home/js/owl.carousel.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            $('.owl-carousel').owlCarousel({
+                loop: true,
+                margin: 0,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: true
+                    },
+                    667: {
+                        items: 2,
+                        nav: true,
+                        margin: 20
+                    },
+                    1000: {
+                        items: 2,
+                        nav: true,
+                        loop: true,
+                        margin: 20
+                    }
+                }
+            })
+        })
+    </script>
+    <!-- //owl carousel for team -->
+    <!-- theme switch js (light and dark)-->
+    <script src="{% static 'home/js/theme-change.js' %}"></script>
+    <script>
+        function autoType(elementClass, typingSpeed) {
+            var thhis = $(elementClass);
+            thhis.css({
+                "position": "relative",
+                "display": "inline-block"
+            });
+            thhis.prepend('<div class="cursor" style="right: initial; left:0;"></div>');
+            thhis = thhis.find(".text-js");
+            var text = thhis.text().trim().split('');
+            var amntOfChars = text.length;
+            var newString = "";
+            thhis.text("|");
+            setTimeout(function () {
+                thhis.css("opacity", 1);
+                thhis.prev().removeAttr("style");
+                thhis.text("");
+                for (var i = 0; i < amntOfChars; i++) {
+                    (function (i, char) {
+                        setTimeout(function () {
+                            newString += char;
+                            thhis.text(newString);
+                        }, i * typingSpeed);
+                    })(i + 1, text[i]);
+                }
+            }, 1500);
+        }
+
+        $(document).ready(function () {
+            // Now to start autoTyping just call the autoType function with the
+            // class of outer div
+            // The second paramter is the speed between each letter is typed.
+            autoType(".type-js", 200);
+        });
+    </script>
+    <!-- //theme switch js (light and dark)-->
+    <!-- magnific popup -->
+    <script src="{% static 'home/js/jquery.magnific-popup.min.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            $('.popup-with-zoom-anim').magnificPopup({
+                type: 'inline',
+
+                fixedContentPos: false,
+                fixedBgPos: true,
+
+                overflowY: 'auto',
+
+                closeBtnInside: true,
+                preloader: false,
+
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-zoom-in'
+            });
+
+            $('.popup-with-move-anim').magnificPopup({
+                type: 'inline',
+
+                fixedContentPos: false,
+                fixedBgPos: true,
+
+                overflowY: 'auto',
+
+                closeBtnInside: true,
+                preloader: false,
+
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-slide-bottom'
+            });
+        });
+    </script>
+    <!-- //magnific popup -->
+    <!-- MENU-JS -->
+    <script>
+        $(window).on("scroll", function () {
+            var scroll = $(window).scrollTop();
+
+            if (scroll >= 80) {
+                $("#site-header").addClass("nav-fixed");
+            } else {
+                $("#site-header").removeClass("nav-fixed");
+            }
+        });
+
+        //Main navigation Active Class Add Remove
+        $(".navbar-toggler").on("click", function () {
+            $("header").toggleClass("active");
+        });
+        $(document).on("ready", function () {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+            $(window).on("resize", function () {
+                if ($(window).width() > 991) {
+                    $("header").removeClass("active");
+                }
+            });
+        });
+    </script>
+    <!-- //MENU-JS -->
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+        $(function () {
+            $('.navbar-toggler').click(function () {
+                $('body').toggleClass('noscroll');
+            })
+        });
+    </script>
+    <!-- //disable body scroll which navbar is in active -->
+    <!--bootstrap-->
+    <script src="{% static 'home/js/bootstrap.min.js' %}"></script>
+    <!-- //bootstrap-->
+    <!-- //Js scripts -->
+
+      <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+          tinymce.init({
+              selector:'textarea.tiny',
+              statusbar: false,
+              menubar: ' edit view insert format tools table tc help',
+
+          });
+    </script>
+</body>
+
+</html>

@@ -1,10 +1,96 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-Homepage
-</body>
-</html>
+{% extends 'paste/base.html' %}
+{% load static %}
+    <!-- banner section -->
+ {% block content %}
+   <section id="home" class="w3l-banner py-md-5 pt-md-0 pt-sm-5 pt-4">
+        <div class="container py-lg-5 py-md-4 pt-md-0 pt-sm-1 mt-lg-0 mt-5">
+            <div class="row align-items-center py-lg-5 py-md-5 mt-4">
+                <div class="banner-image-w3 text-lg-center">
+                    <img src="{% static 'home/images/new-high2.png' %}" alt="" class="img-fluid">
+                </div>
+                <div class="offset-lg-6 col-lg-6 offset-md-5 col-md-7 mt-lg-5 pt-md-4 pt-5">
+                    <h3 class="mb-sm-4 mb-3 title"> Popular Text <br>Sharing
+                        <span class="type-js"><span class="text-js">Platform</span></span></h3>
+                    <p>We help you to share your texts anytime anywhere with the help of our advanced tools.</p>
+                    <div class="mt-md-5 mt-4 mb-lg-0 mb-4">
+                        {% if not request.user.is_authenticated %}
+                            <a class="btn btn-primary btn-style" href="{% url 'register' %}">Sign Up Now</a>
+                            <a class="btn btn-primary btn-style" href="{% url 'login' %}">Login</a>
+                        {% else %}
+                            <a class="btn btn-primary btn-style" href="{% url 'dashboard' %}">Dashboard</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //banner section -->
+
+{#    Add Paste Section#}
+    <section>
+        <div class="container mt-4 mb-4">
+            <h2 class="mt-5 text-center">Create Paste</h2>
+            {% if request.user.is_authenticated %}
+                <form action="{% url 'add_text' %}" class="mt-5" method="post">
+                    {% csrf_token %}
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="title">Title</label>
+                                <input type="text" class="form-control" id="title" placeholder="Enter your Title" name="title" required>
+                                <small class="form-text text-muted">
+                                    This is the title of your paste. Just enter the title of your paste to make
+                                    it remarkable.
+                                </small>
+                            </div>
+                            <div class="form-group">
+                                <label for="key">Key</label>
+                                <input type="text" class="form-control" id="key" placeholder="Enter your Key" name="key">
+                                <small class="form-text text-muted">
+                                    This is the password of your paste. Putting key will help you to secure your
+                                    texts.
+                                </small>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="form-group">
+                                    <label for="security">Security</label>
+                                    <select name="security" id="security" class="form-control" required>
+                                        <option value="PUBLIC">Public</option>
+                                        <option value="PRIVATE">Private</option>
+                                    </select>
+                                    <small class="form-text text-muted">
+                                        Enter security for your text. Private can only be accessed by you and
+                                        public are accessed with the help of email.
+                                    </small>
+                                </div>
+                                <label for="expiration_date">Expiration Date</label>
+                                <input type="date" class="form-control" id="expiration_date" name="expiration_date">
+                                <small class="form-text text-muted">
+                                    Expiration date is the great way to make your texts secure. Your texts can
+                                    not be accessed after the time you entered. Leave it empty to make permanent.
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="paste">Your Text</label>
+                        <textarea name="text" placeholder="Enter your text" class="form-control tiny" id="paste" rows="15"></textarea>
+                    </div>
+                    <div class="card-action">
+                        <input type="submit" class="form-control btn btn-primary">
+                    </div>
+                </form>
+            {% else %}
+                <h6 class="text-center mt-2">Looks like you have not signed in yet. But do not worry, we will guide you through it.</h6>
+                <div class="text-center mt-3 mb-5">
+                    <a href="{% url 'login' %}" class="btn btn-primary btn-lg">Login</a>
+                    <a href="{% url 'register' %}" class="btn btn-primary btn-lg">Register</a>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+{% endblock %}

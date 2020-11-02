@@ -59,7 +59,7 @@ def add_text(request):
             title=title
         )
         paste.save()
-        return redirect('my_paste')
+        return redirect('dashboard')
     else:
         return redirect('add')
 
@@ -73,3 +73,50 @@ def dashboard(request):
 def my_pastes(request):
     paste = models.TextFile.objects.filter(author=request.user)
     return render(request, 'paste/my-paste.html', {'paste': paste})
+
+
+@login_required(login_url='login')
+def edit_text_form(request, id):
+    paste = models.TextFile.objects.get(pk=id)
+    if paste.author == request.user:
+        return render(request, 'paste/edit_text.html', {'paste': paste})
+    else:
+        return redirect('home')
+
+
+@login_required(login_url='login')
+def edit_text(request, id):
+    if request.method == "POST":
+        text = request.POST.get('text')
+        title = request.POST.get('title')
+        key = request.POST.get('key')
+        security = request.POST.get('security')
+        expiration_date = request.POST.get('expiration_date')
+        if expiration_date == "":
+            expiration_date = None
+        paste = models.TextFile.objects.get(pk=id)
+
+        paste.text = text
+        paste.title = title
+        paste.key = key
+        paste.security = security
+        paste.expiration_date = expiration_date
+
+        paste.save()
+
+        return redirect('get_text', id)
+    else:
+        return redirect('home')
+
+
+@login_required(login_url='login')
+def delete_text(request):
+    if request.method == "POST":
+        id = request.POST.get('id')
+
+        paste = models.TextFile.objects.get(pk=id)
+        paste.delete()
+
+        return redirect('dashboard')
+    else:
+        return redirect('home')

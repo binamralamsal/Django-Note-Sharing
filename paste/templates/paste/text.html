@@ -1,23 +1,131 @@
+{% extends 'paste/base.html' %}
+
 {% block content %}
-    {% if not expired or request.user == paste.author %}
-        {% if not private %}
-   {% if password or request.user == paste.author %}
-    {{ paste.author }}
-    {{ paste.date }}
-    {{ paste.text }}
-       {% else %}
-       <p>Please provide password</p>
-       <br>
-       <form action="{% url 'get_text' paste.pk %}">
-       <input type="text" placeholder="Enter password" name="p">
-           <br>
-           <input type="submit">
-       </form>
-    {% endif %}
+
+     <!-- inner banner -->
+  <div class="inner-banner">
+    <section class="w3l-breadcrumb">
+      <div class="container">
+        <ul class="breadcrumbs-custom-path">
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li class="active"><span class="fa fa-chevron-right mx-2" aria-hidden="true"></span> {{ paste.title }}</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+  <!-- //inner banner -->
+
+    <section class="md-5" style="background-color:#f6f6f6;">
+        <div class="container" >
+            {% if not expired or request.user == paste.author %}
+                {% if not private %}
+                    {% if password or request.user == paste.author %}
+                        <div class="row">
+                            <div class="col-md-8 mt-2 mb-2" style="padding:5px;">
+                                <div style="background: white; padding:20px;">
+                                    <div id="clipPaste">
+                                        {{ paste.text|safe }}
+                                    </div>
+                                    <hr>
+                                    <div class="row mb-5">
+                                        <div class="col-md-4">
+                                            Author: {{ paste.author }}
+                                        </div>
+                                        <div class="col-md-4">
+                                            Date: {{ paste.date }}
+                                        </div>
+                                        <div class="col-md-4">
+                                            Security: {{ paste.security }}
+                                        </div>
+                                    </div>
+                                    <div class="text-center mb-3" style="margin-top:-20px;">
+                                        <button onclick="CopyToClipboard('clipPaste')" class="btn btn-primary mt-2">Copy</button>
+                                        {% if request.user == paste.author %}
+                                            <a href="{% url 'edit_text_form' paste.id %}" class="btn btn-primary mt-2">Edit</a>
+                                            <a href="" class="btn btn-primary mt-2" data-toggle="modal" data-target="#deleteModal">Delete</a>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalTitle" aria-hidden="true">
+                                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                  <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">Delete Paste</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                      <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                  </div>
+                                                  <div class="modal-body">
+                                                    Do you sure want to delete this paste? Be sure that deletion is permanent and you won't be able to recover.
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                      <form action="{% url 'delete_text' %}" method="post">
+                                                          {% csrf_token %}
+                                                          <input type="hidden" name="id" value="{{ paste.id }}">
+                                                          <button type="submit" class="btn btn-primary">Delete</button>
+                                                      </form>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mt-2 mb-2" style="padding:5px">
+                                <div style="background: white; height:100%; padding:20px;">
+                                    <div class="option">
+                                        asdf
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="container p-4">
+                            <div class="text-center">
+                                <div style="background: white;">
+                                    <h3 class="p-3">Please provide password</h3>
+                                    <form action="{% url 'get_text' paste.pk %}" class="p-3 mt--5" style="display: flex;">
+
+                                        <input type="text" placeholder="Enter password" name="p" class="form-control">
+                                        <input type="submit" class="btn btn-primary">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% else %}
+                    <div class="text-center p-3">
+                        <div style="background: white;" class="p-5">
+                            <h2>Sorry it is private now</h2>
+                            <small>Only the owner of this paste can view this or you can see after the owner edited this paste.</small>
+                        </div>
+                    </div>
+                {% endif %}
             {% else %}
-            <p>Sorry it is private now</p>
+                <div class="text-center p-3">
+                    <div style="background: white;" class="p-5">
+                        <h2>Sorry it is expired now</h2>
+                        <small>Only the owner of this paste can view this or you can see after the owner edited this paste.</small>
+                    </div>
+                </div>
             {% endif %}
-        {% else %}
-        <p>Sorry it is expired now</p>
-    {% endif %}
+        </div>
+    </section>
+
+    <script>
+function CopyToClipboard(containerid) {
+  if (document.selection) {
+    var range = document.body.createTextRange();
+    range.moveToElementText(document.getElementById(containerid));
+    range.select().createTextRange();
+    document.execCommand("copy");
+  } else if (window.getSelection) {
+    var range = document.createRange();
+    range.selectNode(document.getElementById(containerid));
+    window.getSelection().addRange(range);
+    document.execCommand("copy");
+  }
+}
+    </script>
 {% endblock %}
