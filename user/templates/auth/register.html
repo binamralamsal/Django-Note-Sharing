@@ -79,5 +79,19 @@
         </div>
     </div>
     <script type="text/javascript" src="{% static 'user/js/main.js' %}"></script>
+    <!-- Sweet Alert -->
+	<script src="{% static 'js/plugin/sweetalert/sweetalert.min.js' %}"></script>
+    <script>
+        {% for message in messages %}
+            swal("{{ message }}", {
+                icon : "{{ message.tags }}",
+                buttons: {
+                    confirm: {
+                        className : 'btn btn-{{ message.tags }}'
+                    }
+                },
+            });
+        {% endfor %}
+    </script>
 </body>
 </html>

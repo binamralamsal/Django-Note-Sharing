@@ -1,4 +1,5 @@
 {% extends 'paste/dashboard/base.html' %}
+
 {% block content %}
     <div class="page-inner">
 
@@ -80,11 +81,17 @@
                                                                 </ul>
                                                                 <div class="tab-content mt-2 mb-3" id="pills-without-border-tabContent">
                                                                     <div class="tab-pane fade show active" id="without_key{{ forloop.counter }}" role="tabpanel" aria-labelledby="pills-home-tab-nobd">
-                                                                        <input type="text" value="https://{{ request.get_host }}{% url 'get_text' each.pk %}" class="form-control" readonly style="color:black;">
+                                                                        <div style="display: flex;">
+                                                                            <textarea  class="form-control" id="copyLinkText__noKey{{ forloop.counter }}" rows="1" readonly style="color:black;">http://{{ request.get_host }}{% url 'get_text' each.pk %}</textarea>
+                                                                            <button class="btn btn-primary" onclick="copyLink('copyLinkText__noKey{{ forloop.counter }}')">Copy</button>
+                                                                        </div>
                                                                     </div>
                                                                     {% if each.key %}
                                                                         <div class="tab-pane fade" id="with_key{{ forloop.counter }}" role="tabpanel" aria-labelledby="pills-profile-tab-nobd">
-                                                                            <input type="text" value="https://{{ request.get_host }}{% url 'get_text' each.pk %}?p={{ each.key }}" class="form-control" readonly style="color:black;">
+                                                                            <div style="display: flex">
+                                                                                <textarea class="form-control" rows="1" id="copyLinkText__withKey{{ forloop.counter }}" readonly style="color:black;">http://{{ request.get_host }}{% url 'get_text' each.pk %}?p={{ each.key }}</textarea>
+                                                                                <button class="btn btn-primary" onclick="copyLink('copyLinkText__withKey{{ forloop.counter }}')">Copy</button>
+                                                                            </div>
                                                                         </div>
                                                                     {% endif %}
                                                                 </div>
@@ -103,6 +110,26 @@
                                     {% endfor %}
                                 </tbody>
                             </table>
+                            {% if not paste %}
+                                <small class="text-center text-muted">No results found. Create new paste from the option given at the right.</small>
+                            {% endif %}
+                            <nav aria-label="Page navigation example" class="float-right">
+                              <ul class="pagination">
+                                  {% if paste.has_previous %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ paste.number|add:-1 }}">Previous</a></li>
+                                  {% endif %}
+                                  {% for num in paste.paginator.page_range %}
+                                      {% if paste.number == num %}
+                                        <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                                      {% elif num > paste.number|add:'-3' and num < paste.number|add:'3' %}
+                                          <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                                      {% endif %}
+                                  {% endfor %}
+                                {% if paste.has_next %}
+                                    <li class="page-item"><a class="page-link" href="?page={{ paste.number|add:1 }}">Next</a></li>
+                              {% endif %}
+                              </ul>
+                            </nav>
 
                         </div>
                     </div>
@@ -112,5 +139,29 @@
         </div>
 
     </div>
+
+    <script>
+        function copyLink(id) {
+          /* Get the text field */
+          var copyText = document.getElementById(id);
+
+          /* Select the text field */
+          copyText.select();
+          copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+          /* Copy the text inside the text field */
+          document.execCommand("copy");
+
+          /* Alert the copied text */
+          swal("Text Copied", copyText.value + " is copied successfully.", {
+            icon : "success",
+            buttons: {
+                confirm: {
+                    className : 'btn btn-success'
+                }
+            },
+        });
+        }
+    </script>
 
 {% endblock %}

@@ -52,9 +52,11 @@ Author URL: http://w3layouts.com
                         <li class="nav-item">
                             <a class="nav-link" href="">Contact Us</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
-                        </li>
+                        {% if request.user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+                            </li>
+                        {% endif %}
                     </ul>
                 </div>
                 <!-- toggle switch for light and dark theme -->
@@ -452,6 +454,9 @@ Author URL: http://w3layouts.com
     <!-- //bootstrap-->
     <!-- //Js scripts -->
 
+    <!-- Sweet Alert -->
+	<script src="{% static 'js/plugin/sweetalert/sweetalert.min.js' %}"></script>
+
       <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script>
           tinymce.init({
@@ -460,6 +465,18 @@ Author URL: http://w3layouts.com
               menubar: ' edit view insert format tools table tc help',
 
           });
+    </script>
+    <script>
+        {% for message in messages %}
+            swal("{{ message }}", {
+                icon : "{{ message.tags }}",
+                buttons: {
+                    confirm: {
+                        className : 'btn btn-{{ message.tags }}'
+                    }
+                },
+            });
+        {% endfor %}
     </script>
 </body>
 

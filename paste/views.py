@@ -1,6 +1,8 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
+from django.core.paginator import Paginator
 from . import models
 import datetime as dt
 
@@ -59,6 +61,7 @@ def add_text(request):
             title=title
         )
         paste.save()
+        messages.success(request, 'Your New Text is successfully added')
         return redirect('dashboard')
     else:
         return redirect('add')
@@ -72,6 +75,10 @@ def dashboard(request):
 @login_required(login_url='login')
 def my_pastes(request):
     paste = models.TextFile.objects.filter(author=request.user)
+
+    paginator = Paginator(paste, 5)
+    page = request.GET.get('page')
+    paste = paginator.get_page(page)
     return render(request, 'paste/my-paste.html', {'paste': paste})
 
 
@@ -103,6 +110,7 @@ def edit_text(request, id):
         paste.expiration_date = expiration_date
 
         paste.save()
+        messages.success(request, 'Your Paste is successfully edited.')
 
         return redirect('get_text', id)
     else:
@@ -116,7 +124,7 @@ def delete_text(request):
 
         paste = models.TextFile.objects.get(pk=id)
         paste.delete()
-
+        messages.success(request, 'Your Paste is successfully deleted!')
         return redirect('dashboard')
     else:
         return redirect('home')

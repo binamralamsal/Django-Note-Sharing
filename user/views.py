@@ -1,7 +1,7 @@
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from django.contrib import auth
+from django.contrib import auth, messages
 
 
 def login(request):
@@ -25,13 +25,17 @@ def login_user(request):
     if request.method == "POST":
         email = request.POST['email']
         password = request.POST['password']
-        print(email)
-        print(password)
         user = auth.authenticate(username=email, password=password)
         if user is not None:
             auth.login(request, user)
+            messages.success(request, "You are logged in successfully!")
             return redirect('dashboard')
-        return redirect('login')
+        else:
+            messages.error(request, "Either email or password is incorrect")
+            return redirect('login')
+    else:
+        messages.error(request, "Internal Error Occurred!")
+        return redirect('home')
 
 
 def register_user(request):
@@ -41,9 +45,24 @@ def register_user(request):
         email = request.POST['email']
         password = request.POST['password']
         password_repeat = request.POST['password_repeat']
+
+        # To check if user is registered already or not
+        if User.objects.filter(username=email).exists():
+            messages.error(request, "Email with that user already exists!")
+            return redirect('register')
         if password == password_repeat:
-            user = User.objects.create_user(first_name=first_name, last_name=last_name, email=email, username=email, password=password)
-            user.save()
-            auth.login(request, user)
-            return redirect('dashboard')
+            if len(password) >= 8:
+                user = User.objects.create_user(first_name=first_name, last_name=last_name, email=email, username=email, password=password)
+                user.save()
+                auth.login(request, user)
+                messages.success(request, "Your new user is created successfully!")
+                return redirect('dashboard')
+            else:
+                messages.error(request, "Sorry but minimum of 8 letters are required for password.")
+                return redirect('register')
+        else:
+            messages.error(request, "Password does not match")
         return redirect('register')
+    else:
+        messages.error(request, "Internal Error Occurred!")
+        return redirect('home')

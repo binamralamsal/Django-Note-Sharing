@@ -171,6 +171,18 @@
 			fillColor: 'rgba(255, 165, 52, .14)'
 		});
 	</script>
+    <script>
+        {% for message in messages %}
+            swal("{{ message }}", {
+                icon : "{{ message.tags }}",
+                buttons: {
+                    confirm: {
+                        className : 'btn btn-{{ message.tags }}'
+                    }
+                },
+            });
+        {% endfor %}
+    </script>
 
 </body>
 </html>
