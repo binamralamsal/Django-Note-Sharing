@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib import auth, messages
 
+from paste.models import TextFile
+
 
 def login(request):
     if request.user.is_authenticated:
@@ -66,3 +68,22 @@ def register_user(request):
     else:
         messages.error(request, "Internal Error Occurred!")
         return redirect('home')
+
+
+def profile(request):
+    paste = TextFile.objects.count()
+    return render(request, 'auth/profile.html', {'paste': paste})
+
+
+def edit_profile(request):
+    if request.method == 'POST':
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        request.user.first_name = first_name
+        request.user.last_name = last_name
+        request.user.save()
+        messages.success(request, "Profile Update successfully.")
+        return redirect('profile')
+    else:
+        messages.error(request, "Internal error occurred")
+        return redirect('profile')
