@@ -36,7 +36,10 @@
            		    	<input type="password" class="input" name="password">
             	   </div>
             	</div>
-            	<a href="#">Forgot Password?</a>
+                <div style="display: flex; justify-content:space-between; margin-top:15px;">
+                    <small class="text-muted" style="color:grey">Have not signed up yet?</small>
+                    <a href="{% url 'register' %}">Sign Up</a>
+                </div>
             	<input type="submit" class="btn" value="Login">
             </form>
         </div>
